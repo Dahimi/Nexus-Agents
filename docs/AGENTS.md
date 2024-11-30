@@ -46,12 +46,12 @@ Your command-line automation companion, featuring two complementary implementati
 - 🔬 Knowledge distillation from larger model
 - 🎓 Maintains high command accuracy
 
-**Technical Implementation**
+**Technical Implementation** <\br>
 While we initially explored advanced knowledge distillation approaches (MiniPLM and PromptKD), our implementation adapted to computational constraints:
 
-📊 Base Model: Quantized Qwen/Qwen2-0.5B
-🔧 Optimization: QLoRA fine-tuning using train.json
-💡 Benefits: Reduced memory footprint while maintaining accuracy
+- 📊 Base Model: Quantized Qwen/Qwen2-0.5B
+- 🔧 Optimization: QLoRA fine-tuning using train.json
+- 💡 Benefits: Reduced memory footprint while maintaining accuracy
 
 ![CLI Agent Knowledge Distillation Architecture](MiniPLM.png)
 Fig 1: MiniPLM's offline difference sampling approach
