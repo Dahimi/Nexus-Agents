@@ -145,26 +145,9 @@ agent-hub/
 
 ---
 
-## **Contributing**
-
-We welcome contributions from the community! Here’s how you can contribute:
-
-1. **Fork the repository**.
-2. **Create a new agent** for a specific task (e.g., web search, code generation).
-3. **Test your agent** against the predefined benchmark datasets.
-4. **Submit your agent** via a pull request and provide details (e.g., description, dependencies, etc.).
-5. **Monitor your agent’s performance** on the leaderboard and respond to community feedback.
-
-### **Before submitting, ensure your agent:**
-- Follows the submission format (including required metadata).
-- Works correctly with the evaluation pipeline.
-- Has adequate documentation for other users.
-
----
-
 ## **Evaluation Pipeline**
 
-The evaluation pipeline automatically runs on every new agent submission. Here's how it works (see [detailed documentation](/agent_submission/guidelines.md)):
+The evaluation pipeline automatically runs on every new agent submission. Here's how it works (see [detailed documentation](/docs/guidelines.md)):
 
 1. **Agent Validation**: The agent is first validated to ensure that it follows the expected format and dependencies.
 2. **Benchmark Testing**: The agent is tested against predefined task-specific benchmarks (e.g., web search queries, code generation tasks).
@@ -180,6 +163,20 @@ The evaluation pipeline automatically runs on every new agent submission. Here's
 - CLI Operation Agents
 - Code Generation Agents
 - (More benchmarks coming soon...)
+
+---
+
+## **Available Agents**
+
+We've begun populating the hub with our first set of specialized agents! While some are still in development, we're excited to share our progress.
+
+Check out our [Current Agents Overview](docs/AGENTS.md) to:
+- See what agents have already landed
+- Learn about their capabilities and status
+- Discover opportunities for contribution
+- Find out which evaluation pipelines are ready
+
+We're just getting started, and we're looking forward to your contributions!
 
 ---
 
@@ -207,18 +204,97 @@ You can also run the evaluation pipeline locally if you want to test an agent be
    The results will be saved in `evaluation/results/`, and you can view the metrics like accuracy, time, memory usage, etc.
 
 ---
+## **Contributing**
 
+We welcome contributions in several key areas:
+
+### 1. Building and Submitting Agents
+
+The most direct way to contribute is by creating specialized agents:
+
+1. **Choose a Task**: Identify a specific computer interaction task
+2. **Implement the Agent**
+3. **Test Locally**: Use our evaluation tools
+4. **Submit**: Create a pull request with your agent
+
+#### Agent Requirements
+- Clear, single responsibility
+- Standard input/output interface
+- Documentation and examples
+- Passes evaluation metrics
+
+For more details, see [guidelines](/docs/guidelines.md).
+### 2. Evaluation Infrastructure
+
+Help us improve how we evaluate and benchmark agents:
+
+- **Benchmark Datasets**: Create or enhance task-specific datasets
+- **Evaluation Metrics**: Develop new metrics for agent performance
+- **Reward Models**: Build and train models that assess agent outputs
+- **Testing Frameworks**: Improve our testing infrastructure
+
+### 3. CI/CD Pipeline
+
+Enhance our automation and deployment infrastructure (It's currently in the very early stages):
+
+- **Submission Pipeline**: Improve agent validation and acceptance
+- **Evaluation Pipeline**: Automate performance testing
+- **Deployment Flow**: Streamline the process of pushing to the hub
+- **Integration Tests**: Add comprehensive testing scenarios
+
+Example areas:
+```yaml
+# GitHub Actions workflow enhancement
+name: Agent Evaluation Pipeline
+on:
+  pull_request:
+    paths:
+      - 'agents/**'
+      - 'evaluation/**'
+
+jobs:
+  evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Benchmarks
+        uses: ./.github/actions/run-benchmarks
+      - name: Analyze Performance
+        uses: ./.github/actions/analyze-metrics
+      # Your improvements here
+```
+
+### 4. Documentation and Examples
+
+- Write tutorials and guides
+- Create example implementations
+- Document best practices
+- Translate documentation
+
+### 5. Core Infrastructure
+
+- Improve the Orchestrator's planning capabilities (It's currently in the very early stages)
+- Enhance inter-agent communication
+- Optimize resource usage
+- Add new features to the hub
+
+### Getting Started with Contributing
+
+1. **Fork the repository**
+2. **Choose your focus area** from the above categories
+3. **Check existing issues** or create a new one describing your planned contribution
+4. **Submit a PR** following our contribution guidelines
+
+### Contribution Guidelines
+
+- Follow our coding standards
+- Include tests for new features
+- Update relevant documentation
+- Add your changes to the CHANGELOG
+
+
+---
 ## **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
----
 
-Feel free to open issues or create a pull request to improve or expand the platform. We look forward to your contributions!
-
----
-
-### Customization Notes:
-- **Adjust the "Evaluation Pipeline" section** based on the actual tools and technologies you're using for the evaluation (e.g., specific libraries or infrastructure like Docker or cloud services).
-- **Modify the "Running the Evaluation Locally" section** to reflect your local development environment setup.
-- You can further **extend the "Contributing" section** with guidelines specific to your project's submission process or any testing requirements.
