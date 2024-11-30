@@ -17,7 +17,7 @@ class BrowserUse(BaseAgent):
     def __init__(self):
         description = """An agent that allows AI agents to browse the web in fast and efficient way just like a human.
         The agent is independent and able to perform browsing tasks.
-        It can handle complex queries that require multiple steps to complete. (consider like a human browsing the web)"""
+        It can handle complex queries that require multiple steps to complete. Don't give too granular queries. Give a high level query."""
         name = "BrowserUse"
         task = AgentTask.WEB_BROWSER
         super().__init__(name, description, task)

@@ -1,6 +1,6 @@
 from typing import List
 from agent_hub.agent import Agent
-from agent_hub.orchestrator.llms import get_llm
+from agent_hub.llms import get_llm
 from agent_hub.state import State
 from agent_hub.agent import AgentInput
 from pydantic import BaseModel
@@ -73,15 +73,14 @@ class Orchestrator(Agent):
         
         Thus, you should only use the agents that are necessary to complete the task.
         Note: You can use the same agent multiple times if needed.
+        IMPORTANT: Look at the agent's description and capabilities. Therefore don't give too granular queries. Give a high level query if the agents can handle them.
         """
         
         human_prompt = f"""Plan the computer interaction steps for this task: {query}
         Break it down into specific, atomic operations that match our agents' capabilities."""
         messages = [SystemMessage(content=system_prompt), HumanMessage(content=human_prompt)]
-        with open("plan_prompt.txt", "w") as f:
-            f.write(("\n".join([message.content for message in messages])))
         plan = self.plan_llm.invoke(messages)
-        # print("Plan: \n", plan.model_dump_json(indent=4))
+        print("New Plan Created: \n", plan.model_dump_json(indent=4))
         return plan
 
     def _format_agent_capabilities(self) -> str:
