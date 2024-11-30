@@ -105,6 +105,28 @@ Each agent:
 - Can be simple (function) or complex (containerized service)
 - Optimizes for its specific use case
 
+### Graph-based Architecture
+
+Agent Hub leverages the `langgraph` library to wire all components together in a directed graph structure. This architecture provides:
+
+- Clear flow control with defined entry and exit points
+- Flexible routing between components
+- Conditional execution paths
+- State management across the execution chain
+
+The graph structure follows this flow:
+1. Entry point (`START`)
+2. Front LLM for initial task analysis
+3. Orchestrator for task planning and agent selection
+4. Specialized agents for task execution
+5. Exit point (`END`)
+
+Here's the visual representation of the graph architecture for an example workflow (where the agents used are Browser Agent and CLI Agent):
+
+![Agent Hub Graph Architecture](docs/mermail_graph.png)
+
+The graph implementation uses `langgraph`'s `StateGraph` to manage the flow and state transitions between components. Each node in the graph represents an agent or component, and edges define the possible transitions between them based on the execution state.
+
 ---
 
 ## **Project Structure**
