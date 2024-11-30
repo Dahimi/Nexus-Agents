@@ -8,6 +8,17 @@ This is where our solution comes in. Instead of relying on one large model to ha
 
 By making this platform open-source, we're creating a hub where developers can contribute their specialized agents, fostering continuous improvement and evolution. This community-driven approach ensures we're always pushing towards more efficient, reliable, and cost-effective computer automation.
 
+## **Why Morocco?**
+
+When we started this project, we weren't just thinking about building another AI platform - we were thinking about Morocco's unique position in the AI landscape. Our country has untapped tech talent ready to explode, and we believe this is our moment to shine.
+
+Why? Because we're building something that plays to our strengths:
+
+- **Built for Morocco, Open to the World**: We're making it easy to integrate Morocco-specific agents like Darija STT models and Atlas LLM, while keeping the platform globally accessible. It's our way of bringing Moroccan innovation to the world stage.
+
+- **Our Shot at Making History**: Just like GitHub became the hub for code and Hugging Face put France on the AI map, we believe Agent Hub could make Morocco a central player in the AI world. Not by following others' paths, but by creating our own.
+
+This isn't just about catching up - it's about leading in our own way. We're creating a space where Moroccan developers can learn, contribute, and shape the future of AI automation alongside the global community.
 
 ## **Table of Contents**
 - [Overview](#overview)
