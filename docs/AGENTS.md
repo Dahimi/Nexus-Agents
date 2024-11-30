@@ -31,20 +31,30 @@ Our flagship agent for intelligent web information retrieval.
 
 ### 💻 CLI Agent 🟡
 
-Your command-line automation companion.
+Your command-line automation companion, featuring two complementary implementations:
 
-**Core Features**
-- ⚡ Shell command execution
-- 📁 File system operations
-- 🛠️ System management tools
+**Standard Version**
+- ⚡ Full-featured shell command execution
+- 📁 Comprehensive file system operations
+- 🛠️ Advanced system management capabilities
+- 🧠 Built on established large-scale LLM
+
+**Optimized Version (Our Innovation)**
+- 🚀 Significantly faster inference on same hardware
+- 💻 Hardware-friendly (20x+ smaller model)
+- 🎯 Specialized for CLI operations
+- 🔬 Knowledge distillation from larger model
+- 🎓 Maintains high command accuracy
 
 **Implementation Status**
 
-✅ Core functionality complete
+✅ Core functionality complete in both versions
 
-⏳ Performance optimization ongoing
+⏳ Knowledge distillation refinements ongoing
 
-🔄 Evaluation pipeline in progress
+🔄 Comparative evaluation pipeline in progress
+
+![CLI Agent Knowledge Distillation Architecture](finetuning.png)
 
 
 ### 🌐 Web Browser Agent 🔴
