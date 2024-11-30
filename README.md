@@ -2,9 +2,9 @@
 
 # **Agent Hub: Open-Source Platform for Specialized AI Agents**
 
-Anthropic recently introduced Computer Use - a groundbreaking capability that allows AI to interact with computers just like humans do, through viewing screens, moving cursors, and typing. While this opens up endless possibilities for AI automation, it currently faces some key limitations: high latency in interactions, significant cost due to token usage, and reliability issues especially for specialized tasks.
+Anthropic's Computer Use breakthrough lets AI interact with computers like humans - viewing screens, moving cursors, and typing. While revolutionary, it faces challenges: high latency, significant costs, and reliability issues with specialized tasks.
 
-This is where our solution comes in. Instead of relying on one large model to handle all computer interactions, we're building an open-source ecosystem of specialized, lightweight agents. Each agent excels at one specific task - whether it's manipulating spreadsheets, handling CLI operations, or navigating web interfaces. Some agents are small, fine-tuned LLMs, while others are simply clever software engineering solutions, choosing the most efficient approach for each task rather than defaulting to vision-based interaction.
+Our solution: an open-source ecosystem of specialized, lightweight agents instead of a single large model. Each agent masters one task - from spreadsheets to CLI operations. We use both fine-tuned LLMs and clever software solutions, prioritizing efficiency over vision-based interaction.
 
 By making this platform open-source, we're creating a hub where developers can contribute their specialized agents, fostering continuous improvement and evolution. This community-driven approach ensures we're always pushing towards more efficient, reliable, and cost-effective computer automation.
 
@@ -74,12 +74,10 @@ Agent Hub breaks down complex AI interactions into specialized, efficient agents
 
 ### The Orchestrator
 
-At the heart of Agent Hub lies the Orchestrator - an intelligent system that coordinates specialized agents to accomplish complex tasks. The Orchestrator:
-
-1. **Plans**: Breaks down user requests into atomic tasks
-2. **Coordinates**: Selects and sequences appropriate agents
-3. **Adapts**: Modifies plans based on execution results
-
+The Orchestrator is our intelligent core that:
+1. **Plans**: Breaks tasks into smaller pieces
+2. **Coordinates**: Picks and sequences the right agents
+3. **Adapts**: Adjusts plans on the fly
 Example workflow:
 ```python
 User Query: "Build a React app that displays my photos"
@@ -189,12 +187,14 @@ The evaluation pipeline automatically runs on every new agent submission. Here's
    - **Time-to-Complete**: How long does it take for the agent to complete the task?
    - **Memory Usage**: How much memory does the agent consume during execution?
    - **Cost**: If applicable, how much does the agent cost to run (e.g., token usage for LLMs)?
-4. **Ranking**: The agent is ranked based on these metrics, and the results are displayed on the leaderboard.
+4. **Ranking (TODO)**: The agent is ranked based on these metrics, and the results are displayed on the leaderboard.
 
+Note: As detailed in the [available agents](/docs/AGENTS.md), not all agents include evaluation pipelines yet. We're currently working on adding more benchmarks for each agent type.
 ### **Supported Benchmarks:**
 - Web Search Agents
-- CLI Operation Agents
-- Code Generation Agents
+- Browser Agents (Coming Soon)
+- CLI Operation Agents (Coming Soon)
+- Code Generation Agents (Coming Soon)
 - (More benchmarks coming soon...)
 
 ---
@@ -226,7 +226,7 @@ You can also run the evaluation pipeline locally if you want to test an agent be
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/agent-hub.git
+   git clone https://github.com/Dahimi/Nexus-Agents.git
    cd agent-hub
    ```
 
@@ -281,27 +281,6 @@ Enhance our automation and deployment infrastructure (It's currently in the very
 - **Evaluation Pipeline**: Automate performance testing
 - **Deployment Flow**: Streamline the process of pushing to the hub
 - **Integration Tests**: Add comprehensive testing scenarios
-
-Example areas:
-```yaml
-# GitHub Actions workflow enhancement
-name: Agent Evaluation Pipeline
-on:
-  pull_request:
-    paths:
-      - 'agents/**'
-      - 'evaluation/**'
-
-jobs:
-  evaluate:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Run Benchmarks
-        uses: ./.github/actions/run-benchmarks
-      - name: Analyze Performance
-        uses: ./.github/actions/analyze-metrics
-      # Your improvements here
-```
 
 ### 4. Documentation and Examples
 
