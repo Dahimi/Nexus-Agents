@@ -70,8 +70,6 @@ Fig 2: PromptKD's three-stage distillation process
 
 🔄 Comparative evaluation pipeline in progress
 
-![CLI Agent Knowledge Distillation Architecture](finetuning.png)
-
 
 ### 🌐 Web Browser Agent 🔴
 
