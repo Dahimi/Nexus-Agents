@@ -23,7 +23,8 @@ You are an expert planner designed to help AI systems interact with computers ef
         Available specialized agents and their capabilities:
         
         - BrowserUse: An agent that allows AI agents to browse the web in fast and efficient way just like a human.
-        The agent is independent and able to perform browsing tasks like searching for information, finding specific content, and more.
+        The agent is independent and able to perform browsing tasks.
+        It can handle complex queries that require multiple steps to complete. (consider like a human browsing the web)
         
 
         - CLIAgent: 
@@ -36,5 +37,5 @@ You are an expert planner designed to help AI systems interact with computers ef
         Thus, you should only use the agents that are necessary to complete the task.
         Note: You can use the same agent multiple times if needed.
         
-Plan the computer interaction steps for this task: Get current weather in Paris
+Plan the computer interaction steps for this task: Check the weather in Paris
         Break it down into specific, atomic operations that match our agents' capabilities.

@@ -40,28 +40,70 @@ Once submitted, agents are automatically evaluated based on defined benchmarks a
 - **Automatic Evaluation**: Submitted agents are automatically evaluated on predefined benchmarks.
 - **Task-Specific Benchmarks**: Predefined datasets and queries for each agent type.
 - **Metrics**: Evaluation based on multiple factors, such as accuracy, time-to-complete, memory footprint, and cost.
-- **Community Voting**: Vote for the best agents and help others discover the top performers.
-- **Leaderboard**: A dynamic ranking system for agents based on their evaluation results.
 - **Open-Source**: Fully open-source and community-driven development.
+- **Community Voting (Future)**: Vote for the best agents and help others discover the top performers.
+- **Leaderboard (Future)**: A dynamic ranking system for agents based on their evaluation results.
 
 ---
 
 ## **How It Works**
+Agent Hub breaks down complex AI interactions into specialized, efficient agents. Rather than relying on a single large model for all computer interactions, we leverage an ecosystem of purpose-built agents orchestrated by an intelligent planning system.
 
-1. **Submitting an Agent**:
-   - Developers submit their agents by creating a pull request to the `agents/` directory in this repository.
-   - The agent must be accompanied by a description, expected input/output format, and any dependencies.
+### Key Benefits
+- **Efficiency**: Specialized agents are faster and more resource-efficient than general-purpose models
+- **Cost-Effective**: Reduced token usage and computational requirements
+- **Reliability**: Purpose-built agents excel at specific tasks
+- **Extensible**: Community-driven development of new agents
 
-2. **Evaluation Process**:
-   - Each agent is automatically evaluated through our evaluation pipeline, which runs the agent against predefined benchmarks.
-   - The evaluation measures key metrics like **accuracy**, **execution time**, **memory usage**, and **cost** (e.g., token usage for LLM-based agents).
-   - The results are stored, and the agent is ranked accordingly.
+## **Architecture**
 
-3. **Leaderboard**:
-   - The top-performing agents are displayed on the leaderboard, allowing the community to quickly discover the best solution for any task.
+### Solution Architecture
+![Solution Architecture](docs/solution.png)
 
-4. **Community Voting**:
-   - Users can vote for agents based on their experience and performance, influencing the rankings and showcasing the most useful agents.
+
+### The Orchestrator
+
+At the heart of Agent Hub lies the Orchestrator - an intelligent system that coordinates specialized agents to accomplish complex tasks. The Orchestrator:
+
+1. **Plans**: Breaks down user requests into atomic tasks
+2. **Coordinates**: Selects and sequences appropriate agents
+3. **Adapts**: Modifies plans based on execution results
+
+Example workflow:
+```python
+User Query: "Build a React app that displays my photos"
+
+# Orchestrator creates an execution plan:
+plan = {
+    "tasks": [
+        {
+            "name": "Code Generation",
+            "agent": "CodeGenerator",
+            "description": "Create React components for photo display"
+        },
+        {
+            "name": "Project Setup",
+            "agent": "CLIAgent",
+            "description": "Initialize npm project and install dependencies"
+        }
+    ]
+}
+```
+
+### Specialized Agents
+
+Agents are self-contained modules designed for specific tasks:
+- **CLI Agents**: Execute terminal commands
+- **Code Generators**: Create and modify code
+- **Web Agents**: Navigate and interact with websites
+- **File System Agents**: Manage files and directories
+- **Vision Agents**: Interact with graphical interfaces
+
+Each agent:
+- Has a clear, single responsibility
+- Implements a standard interface
+- Can be simple (function) or complex (containerized service)
+- Optimizes for its specific use case
 
 ---
 
@@ -122,7 +164,7 @@ We welcome contributions from the community! Here’s how you can contribute:
 
 ## **Evaluation Pipeline**
 
-The evaluation pipeline automatically runs on every new agent submission. Here's how it works:
+The evaluation pipeline automatically runs on every new agent submission. Here's how it works (see [detailed documentation](/agent_submission/guidelines.md)):
 
 1. **Agent Validation**: The agent is first validated to ensure that it follows the expected format and dependencies.
 2. **Benchmark Testing**: The agent is tested against predefined task-specific benchmarks (e.g., web search queries, code generation tasks).
@@ -180,5 +222,3 @@ Feel free to open issues or create a pull request to improve or expand the platf
 - **Adjust the "Evaluation Pipeline" section** based on the actual tools and technologies you're using for the evaluation (e.g., specific libraries or infrastructure like Docker or cloud services).
 - **Modify the "Running the Evaluation Locally" section** to reflect your local development environment setup.
 - You can further **extend the "Contributing" section** with guidelines specific to your project's submission process or any testing requirements.
-
-Would you like to dive into any specific section or refine the README further?
