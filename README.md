@@ -180,6 +180,13 @@ We're just getting started, and we're looking forward to your contributions!
 
 ---
 
+## **DEMO**
+
+Below is a demo of a use-case that was solved using Agent Hub.
+(video coming soon)
+
+---
+
 ## **Running the Evaluation Locally**
 
 You can also run the evaluation pipeline locally if you want to test an agent before submitting it. Here's how to set it up:
