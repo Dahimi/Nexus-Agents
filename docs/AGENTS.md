@@ -47,7 +47,8 @@ Your command-line automation companion, featuring two complementary implementati
 - 🎓 Maintains high command accuracy
 
 **Technical Implementation** 
-<\br> While we initially explored advanced knowledge distillation approaches (MiniPLM and PromptKD), our implementation adapted to computational constraints:
+
+While we initially explored advanced knowledge distillation approaches (MiniPLM and PromptKD), our implementation adapted to computational constraints:
 
 - 📊 Base Model: Quantized Qwen/Qwen2-0.5B
 - 🔧 Optimization: QLoRA fine-tuning using train.json
