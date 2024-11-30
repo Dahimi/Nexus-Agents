@@ -1,0 +1,109 @@
+## **Current Agents in the Hub**
+
+We've kickstarted the hub with several foundational agents. While these initial implementations are still in early stages, they serve as starting points for community improvements.
+
+### Recently Landed Agents
+
+#### 1. Web Searcher Agent [STABLE]
+- **Task Type**: `WEB_SEARCH`
+- **Status**: Production Ready
+- **Capabilities**:
+  - Efficient web information retrieval
+  - Query optimization
+  - Result filtering and ranking
+- **Evaluation Pipeline**: Complete
+  - Comprehensive benchmark datasets
+  - Implemented reward model
+  - Performance metrics
+  - CI/CD integration
+
+#### 2. CLI Agent [IN PROGRESS]
+```python
+# Example usage of CLI Agent
+query = "Create a new directory called 'projects' and initialize a git repo"
+result = cli_agent.execute(query)
+```
+- **Task Type**: `CLI_COMMAND`
+- **Status**: Basic Implementation
+- **Capabilities**: 
+  - Executes shell commands
+  - Handles file and directory operations
+  - Manages system commands
+- **Needs Community Help With**:
+  - Command validation and security
+  - Error handling
+  - Performance optimization
+  - Evaluation pipeline
+
+#### 3. Web Browser Agent [EXPERIMENTAL]
+- **Task Type**: `WEB_BROWSER`
+- **Status**: Early Development
+- **Target Capabilities**:
+  - Complex web interactions
+  - Form filling and submissions
+  - Browser navigation
+  - Tasks like flight booking, platform sign-ups
+- **Current Challenges**:
+  - Stability issues
+  - Performance optimization needed
+  - Reliability improvements required
+  - No evaluation pipeline yet
+
+### Supported Task Types
+Our platform aims to support the following task types:
+```python
+TaskTypes = {
+    "web_search": "Information retrieval from the web",
+    "cli_command": "Command-line operations",
+    "file_manipulation": "File system operations",
+    "coder": "Code generation and modification",
+    "orchestrator": "Task planning and coordination",
+    "web_browser": "Complex web interactions"
+}
+```
+
+### Current Status Summary
+**[STABLE]**:
+- Web Search Agent (with complete evaluation pipeline)
+
+**[IN PROGRESS]**:
+- CLI Agent (basic implementation)
+
+**[EXPERIMENTAL]**:
+- Web Browser Agent (needs significant work)
+
+**[PLANNED]**:
+- File Manipulation Agent
+- Coder Agent
+
+### Why Open Source Matters
+This is exactly why we've made Agent Hub open source! We need the community's expertise to:
+- Stabilize experimental agents
+- Build robust evaluation pipelines
+- Improve performance and reliability
+- Create competing implementations
+
+### Get Involved
+Priority areas for contribution:
+1. **Web Browser Agent**:
+   - Stability improvements
+   - Error handling
+   - Performance optimization
+   - Evaluation pipeline development
+
+2. **CLI Agent**:
+   - Security enhancements
+   - Command validation
+   - Benchmark creation
+   - Evaluation pipeline
+
+3. **New Agents**:
+   - File Manipulation implementation
+   - Coder agent development
+   - Alternative implementations of existing agents
+
+Join us in building the next generation of computer interaction agents! Check our [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+---
+
+**Note**: We believe in transparency about our current implementation status. While only the Web Searcher is production-ready, we're excited to work with the community to bring the other agents up to the same standard.
