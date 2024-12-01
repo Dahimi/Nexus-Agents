@@ -4,3 +4,6 @@ langchain-together
 langgraph
 httpx==0.27.2
 langchain-mistralai
+deepeval
+pytest
+pytest-asyncio
