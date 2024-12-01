@@ -7,7 +7,7 @@ from agent_hub.plan import TaskStatus
 from typing import List, Dict
 from agent_hub.llms import groq_llm
 import os
-# TODO: Move these to environment variables
+
 SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 JINA_API_KEY = os.getenv("JINA_API_KEY")
 
