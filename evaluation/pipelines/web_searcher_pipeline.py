@@ -10,7 +10,7 @@ web_searcher = WebSearcher()
 asyncio.run(web_searcher.setup())
 web_searcher_benchmark = json.load(open("evaluation/benchmarks_datasets/web_search_benchmark.json"))
 web_searcher_reward_model = WebSearchRewardModel()
-dataset = web_searcher_benchmark["benchmark_data"][:2]
+dataset = web_searcher_benchmark["benchmark_data"][:1]
 
 print("Benchmarking web searcher...")
 print("--------------------------------")
