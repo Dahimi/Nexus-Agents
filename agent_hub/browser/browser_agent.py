@@ -62,14 +62,14 @@ class BrowserUse(BaseAgent):
             return {
             "last_task_status": TaskStatus.SUCCESS,
                 "last_task_output": result,
-                "previous_outputs": [str(result)[:200]]
+                "previous_outputs": ["\n\n**BrowserUse has finished the task with the following output**:\n" + str(result)[:200]]
             }
         except Exception as e:
             print(f"Error executing task: {browse_input.query}. Error: {e}")
             return {
                 "last_task_status": TaskStatus.FAILURE,
                 "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}",
-                "previous_outputs": [f"Error executing task: {browse_input.query}. Error: {e}"]
+                "previous_outputs": [f"\n\n**Error executing task:**\n{browse_input.query}. Error: {e}"]
             }
         
         
@@ -87,14 +87,14 @@ class BrowserUse(BaseAgent):
             return {
                 "last_task_status": TaskStatus.SUCCESS,
                 "last_task_output": result,
-                "previous_outputs": [str(result)[:200]]
+                "previous_outputs": ["\n\n**BrowserUse has finished the task with the following output**:\n" + str(result)[:200]]
             }
         except Exception as e:
             print(f"Error executing task: {browse_input.query}. Error: {e}")
             return {
                 "last_task_status": TaskStatus.FAILURE,
                 "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}",
-                "previous_outputs": [f"Error executing task: {browse_input.query}. Error: {e}"]
+                "previous_outputs": [f"\n\n**Error executing task:**\n{browse_input.query}. Error: {e}"]
             }
         
     def define_input_schema(self) -> type[BrowserUseInput]:
