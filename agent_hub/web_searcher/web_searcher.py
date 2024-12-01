@@ -6,9 +6,10 @@ from agent_hub.state import State
 from agent_hub.plan import TaskStatus
 from typing import List, Dict
 from agent_hub.llms import groq_llm
+import os
 # TODO: Move these to environment variables
-SERPER_API_KEY = "8104f6e89253180fefebf1f58471b8767f4080ee"
-JINA_API_KEY = "jina_11f89a2aa966482498588c1dba1b93cccPFEIYXl3IdmkKNLyyDVFhl2g8-J"
+SERPER_API_KEY = os.getenv("SERPER_API_KEY")
+JINA_API_KEY = os.getenv("JINA_API_KEY")
 
 class WebSearcherInput(AgentInput):
     """
