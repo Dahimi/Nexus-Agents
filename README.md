@@ -222,8 +222,9 @@ We're just getting started, and we're looking forward to your contributions!
 
 ## **DEMO**
 
-Below is a demo of a use-case that was solved using Agent Hub.
-(video coming soon)
+Below is a demo of a use-case that was solved using Agent Hub:
+
+<video src="https://github.com/user-attachments/assets/92aafa1d-d24c-4411-9379-515a5946e3dd"></video>
 
 ---
 
