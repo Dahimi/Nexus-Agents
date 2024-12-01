@@ -246,7 +246,7 @@ You can run the evaluation pipeline locally to test an agent before submitting i
    source venv/bin/activate
    ```
 
-3. Install dependencies (update backsla):
+3. Install dependencies (update backslahes depending on your OS):
    ```bash
    pip install -r ./requirements/requirements.txt
    ```
