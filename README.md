@@ -142,36 +142,41 @@ The graph implementation uses `langgraph`'s `StateGraph` to manage the flow and 
 
 ```
 agent-hub/
-├── README.md
-├── LICENSE
-├── docs/
-│   └── ...                    # Documentation files for contributing, using the platform
-├── agent_submission/
-│   ├── __init__.py
-│   ├── agent_validator.py      # Validate agent submissions
-│   ├── agent_submission_handler.py  # Manage agent submissions
-├── evaluation/
-│   ├── pipeline.py            # Main evaluation pipeline logic
-│   ├── metrics/               # Metric functions (accuracy, efficiency, etc.)
-│   ├── benchmarks/            # Benchmark datasets for different agent tasks
-│   ├── evaluator.py           # Integrates evaluation functions and benchmarks
-├── hub/
-│   ├── leaderboard.py         # Displays top agents based on scores
-│   ├── voting.py              # Handles community voting
-│   ├── agent_directory.py     # Lists available agents in the hub
-├── ci_cd/
-│   ├── .github/
-│   │   └── workflows/
-│   │       └── evaluate-agent.yml  # CI/CD workflow to trigger evaluations
-│   └── Dockerfile             # Docker environment setup for evaluations
+├── .github/
+│   └── workflows/
+│       └── evaluate-web-search-agent.yml  # Automated evaluation workflow
+├── agent_hub/
+│   ├── browser/            # Browser interaction agent
+│   ├── cli/                # Command-line interface agent
+│   ├── coding/             # Code generation agent
+│   ├── orchestrator/       # Agent orchestration logic
+│   └── web_searcher/       # Web search agent
+│       ├── web_searcher.py
+│       ├── agent.py
+│       ├── front_llm.py
+│       ├── graph.py
+│       ├── llms.py
+│       ├── plan.py
+│       └── state.py
+├── evaluation/             # Evaluation framework
+│   ├── benchmarks_datasets/  # Test datasets for different agent types
+│   ├── metrics/             # Performance measurement modules
+│   ├── pipelines/          # Evaluation workflow definitions
+│   ├── results/            # Evaluation output storage
+│   ├── reward_models/      # ML models for output quality assessment
+│   └── __init__.py            # Docker environment setup for evaluations
+├── agent_submission/        # Agent submission handling
+├── ci_cd/                  # CI/CD configuration
+├── evaluation/             # Evaluation framework
+├── requirements/           # Project dependencies
 ├── scripts/
-│   ├── run_evaluation.py      # Manual evaluation CLI
-│   ├── setup_benchmark_data.py # Script for initializing benchmark datasets
-├── data/
-│   ├── web_search_benchmark.csv   # Web search dataset
-│   ├── cli_benchmark.csv          # CLI benchmark dataset
-│   ├── codegen_benchmark.csv      # Code generation dataset
-└── requirements.txt           # Python dependencies
+│   ├── __pycache__/
+│   ├── demo_example.py     # Demo script
+│   └── run_evaluation.py   # Evaluation runner
+└── tests/                  # Test suite
+    ├── __pycache__/
+    ├── agent_hub/
+    └── __init__.py         # Python dependencies
 ```
 
 ---
