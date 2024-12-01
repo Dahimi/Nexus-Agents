@@ -22,7 +22,7 @@ class Orchestrator(Agent):
         super().__init__(name, description, task)
         self.available_agents = available_agents
         self.agents_names_input_names = {agent.as_tool.__name__: agent.name for agent in available_agents}
-        self.main_llm = get_llm()
+        self.main_llm = get_llm("mistral", "pixtral-large-latest")
         self.plan_llm = get_llm("mistral", "pixtral-large-latest").with_structured_output(OrchestratorPlan)
         self.plan = None
         
@@ -79,7 +79,6 @@ class Orchestrator(Agent):
         human_prompt = f"""Plan the computer interaction steps for this task: {query}
         Break it down into specific, atomic operations that match our agents' capabilities."""
         messages = [SystemMessage(content=system_prompt), HumanMessage(content=human_prompt)]
-        print("Invoking plan LLM... with messages: ", "\n".join([m.content for m in messages]))
         plan = self.plan_llm.invoke(messages)
         print("New Plan Created: \n", plan.model_dump_json(indent=4))
         return plan
@@ -202,6 +201,7 @@ class Orchestrator(Agent):
         elif last_task_status == TaskStatus.FAILURE:
             plan = self.update_plan(plan)
         elif last_task_status == TaskStatus.SUCCESS and plan.current_task_index < len(plan.tasks) - 1:
+            plan.tasks[plan.current_task_index].task_status = TaskStatus.SUCCESS
             plan.current_task_index += 1
         else:
             plan.is_completed = True
