@@ -1,5 +1,8 @@
 # Nexus Agents: Submission Guidelines
 
+![CI&CD Pipeline](./pipeline.png)
+
+
 Welcome to **Nexus Agents**, an open-source platform for specialized AI agents that automate a variety of tasks like spreadsheet manipulation, web searches, and command-line operations. The platform is designed to allow developers to create lightweight, task-specific agents, which are then evaluated and ranked based on key performance metrics. Below are the submission guidelines for contributing your agent.
 
 ### 1. **Agent Submission**
