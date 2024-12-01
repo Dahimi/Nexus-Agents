@@ -134,7 +134,7 @@ The graph structure follows this flow:
 
 Here's the visual representation of the graph architecture for an example workflow (where the agents used are Browser Agent and CLI Agent):
 
-![Agent Hub Graph Architecture](docs/mermail_graph.png)
+![Agent Hub Graph Architecture](docs/mermaid_graph.png)
 
 The graph implementation uses `langgraph`'s `StateGraph` to manage the flow and state transitions between components. Each node in the graph represents an agent or component, and edges define the possible transitions between them based on the execution state.
 

@@ -2,7 +2,8 @@ from browser_use import Agent as BrowserAgent
 from agent_hub.agent import Agent as BaseAgent, AgentTask, AgentInput
 from pydantic import Field
 from agent_hub.llms import mistral_llm
-
+import nest_asyncio
+import asyncio
 from agent_hub.state import State
 from agent_hub.plan import TaskStatus
 import asyncio
@@ -41,26 +42,41 @@ class BrowserUse(BaseAgent):
     is necessary for the task.
     """
         name = "BrowserUse"
+        nest_asyncio.apply()
         task = AgentTask.WEB_BROWSER
         super().__init__(name, description, task)
 
     async def setup(self):
         """Initialize the browser agent with Mistral LLM."""
-        
-        print("BrowserUse is ready")
+        try:
+            # Install playwright browsers if not already installed
+            import subprocess
+            subprocess.run(["playwright", "install"], check=True)
+            print("BrowserUse is ready")
+        except Exception as e:
+            print(f"Error during BrowserUse setup: {e}")
+            raise e
 
     def __call__(self, state: State):
         browse_input = BrowserUseInput(**state["next_agent_input"])
         print(f"Sync BrowserUse is calling the available agents for the task: {browse_input}")
         try:
+            # Get the current event loop or create a new one
+            try:
+                loop = asyncio.get_event_loop()
+            except RuntimeError:
+                loop = asyncio.new_event_loop()
+                asyncio.set_event_loop(loop)
+            
             browser_agent = BrowserAgent(
                 task=browse_input.query,
                 llm=mistral_llm
             )
             
-            result = asyncio.run(browser_agent.run())
+            # Run the async code in the event loop
+            result = loop.run_until_complete(browser_agent.run())
             return {
-            "last_task_status": TaskStatus.SUCCESS,
+                "last_task_status": TaskStatus.SUCCESS,
                 "last_task_output": result,
                 "previous_outputs": ["\n\n**BrowserUse has finished the task with the following output**:\n" + str(result)[:200]]
             }
