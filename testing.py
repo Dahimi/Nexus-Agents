@@ -17,11 +17,6 @@ from langchain_core.messages import HumanMessage
 from agent_hub.graph import graph
 
 
-def stream_graph_updates(user_input: str):
-    for event in graph.stream({"messages": [HumanMessage(content=user_input)], "user_input": user_input}):
-        for value in event.values():
-            print(value)
-            print("Assistant:", value["messages"][-1].content)
 
 def invoke_graph(user_input: str):
     return graph.invoke({"messages": [HumanMessage(content=user_input)], "user_input": user_input})
