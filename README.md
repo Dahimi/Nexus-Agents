@@ -240,7 +240,7 @@ You can run the evaluation pipeline locally to test an agent before submitting i
    pip install -r requirements.txt
    ```
 
-3. Set up environment variables:
+3. Set up environment variables (Though it's good software development practice, we uploaded a .env file with the keys to make it easier to run the evaluation pipeline locally (you can use your own keys because those are just free plans keys so they may expire)):
    Create a `.env` file with your API keys:
    ```bash
    SERPER_API_KEY=your_serper_key
@@ -261,6 +261,15 @@ You can run the evaluation pipeline locally to test an agent before submitting i
 
 5. View results:
    Evaluation results will be saved in `evaluation/results/` with metrics for accuracy, timing, memory usage, etc.
+
+
+6. Run the Streamlit UI (optional):
+   If you prefer a graphical interface, we've created a simple Streamlit app:
+   ```bash
+   streamlit run .\streamlit_app.py
+   ```
+   This provides a basic UI for interacting with the agents.
+
 
 ---
 ## **Contributing**
