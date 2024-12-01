@@ -164,8 +164,8 @@ agent-hub/
 │   ├── pipelines/          # Evaluation workflow definitions
 │   ├── results/            # Evaluation output storage
 │   ├── reward_models/      # ML models for output quality assessment
-│   └── __init__.py            # Docker environment setup for evaluations
-├── agent_submission/        # Agent submission handling
+│   └── __init__.py         
+├── agent_submission/       # Agent submission handling
 ├── ci_cd/                  # CI/CD configuration
 ├── evaluation/             # Evaluation framework
 ├── requirements/           # Project dependencies

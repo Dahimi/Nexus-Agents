@@ -61,7 +61,7 @@ class CLIAgent(Agent):
         print(f"CLIAgent has finished the task: {cli_input.operation}")
         return {"last_task_status": TaskStatus.SUCCESS,
                 "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}",
-                "previous_outputs": [f"CLIAgent has finished the task: {cli_input.operation}"]}
+                "previous_outputs": [f"\n\n**CLIAgent has finished the task:**\n{cli_input.operation}"]}
 
     def __call__(self, state: State):
         cli_input = CLIAgentInput(**state["next_agent_input"])
@@ -72,17 +72,17 @@ class CLIAgent(Agent):
             if not output:
                 return {"last_task_status": TaskStatus.FAILURE,
                         "last_task_output": f"CLIAgent failed to execute the command: {command}",
-                        "previous_outputs": [f"CLIAgent failed to execute the command: {command}"]}
+                        "previous_outputs": [f"\n\n**CLIAgent failed to execute the command:**\n{command}"]}
         except Exception as e:
             return {"last_task_status": TaskStatus.FAILURE,
                     "last_task_output": f"CLIAgent failed to execute the command: {command}",
-                    "previous_outputs": [f"CLIAgent failed to execute the command: {command}"]}
+                    "previous_outputs": [f"\n\n**CLIAgent failed to execute the command:**\n{command}"]}
         
         print(f"Executed command: {command}")
         
         return {"last_task_status": TaskStatus.SUCCESS,
                 "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}",
-                "previous_outputs": [f"CLIAgent has finished the task: {cli_input.operation}"]}
+                "previous_outputs": [f"\n\n**CLIAgent has finished the task:**\n{cli_input.operation}"]}
 
     async def setup(self):
         """

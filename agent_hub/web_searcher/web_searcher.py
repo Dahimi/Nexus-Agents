@@ -129,7 +129,7 @@ class WebSearcher(Agent):
         return {
             "last_task_status": TaskStatus.SUCCESS,
             "last_task_output": final_response.content,
-            "previous_outputs": [final_response.content]
+            "previous_outputs": ["\n\n**Web Searcher has finished the task with the following output**:\n" + final_response.content]
         }
 
     def __call__(self, state: State) -> Dict:
@@ -144,7 +144,7 @@ class WebSearcher(Agent):
         return {
             "last_task_status": TaskStatus.SUCCESS,
             "last_task_output": final_response.content,
-            "previous_outputs": [final_response.content]
+            "previous_outputs": ["\n\n**Web Searcher has finished the task with the following output**:\n" + final_response.content]
         }
 
     async def setup(self):
