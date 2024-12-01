@@ -33,7 +33,8 @@ jobs:
 
     - name: Run evaluation pipeline
       run: |
-        python evaluation/pipelines/web_searcher_pipeline.py
+        PYTHONPATH=$PYTHONPATH:$(pwd) python evaluation/pipelines/web_searcher_pipeline.py
+        
 
     - name: Upload evaluation results
       uses: actions/upload-artifact@v3
