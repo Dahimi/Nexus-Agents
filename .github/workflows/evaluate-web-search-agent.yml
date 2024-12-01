@@ -33,12 +33,10 @@ jobs:
 
     - name: Run evaluation pipeline
       run: |
-        python -m evaluation.pipelines.web_searcher_pipeline
+        python -m evaluation.pipelines.web_searcher_pipeline 2>&1 | tee evaluation/results/evaluation.log
 
     - name: Upload evaluation results
       uses: actions/upload-artifact@v3
       with:
         name: evaluation-results
-        path: |
-          evaluation/results/**
-          evaluation/*.log
+        path: evaluation/results/
