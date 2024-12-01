@@ -7,3 +7,4 @@ langchain-mistralai
 pytest
 pytest-asyncio
 streamlit
+browser-use
