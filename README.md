@@ -229,18 +229,34 @@ Below is a demo of a use-case that was solved using Agent Hub.
 
 You can run the evaluation pipeline locally to test an agent before submitting it, or try out the demo example. Here's how:
 
+**First make sure your python version is >= 3.11.**
+
 1. Clone the repository:
    ```bash
    git clone https://github.com/Dahimi/Nexus-Agents.git
    cd Nexus-Agents
    ```
 
-2. Install dependencies (update backsla):
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   # On Windows
+   .\venv\Scripts\activate
+   # On Unix or MacOS
+   source venv/bin/activate
+   ```
+
+3. Install dependencies (update backsla):
    ```bash
    pip install -r ./requirements/requirements.txt
    ```
 
-3. Set up environment variables (Though it's good software development practice, we uploaded a .env file with the keys to make it easier to run the evaluation pipeline locally (you can use your own keys because those are just free plans keys so they may expire)):
+4. Install browser-use and playwright:
+   ```bash
+   playwright install
+   ```
+
+5. Set up environment variables (Though it's good software development practice, we uploaded a .env file with the keys to make it easier to run the evaluation pipeline locally (you can use your own keys because those are just free plans keys so they may expire)):
    Create a `.env` file with your API keys:
    ```bash
    SERPER_API_KEY=your_serper_key
@@ -249,7 +265,7 @@ You can run the evaluation pipeline locally to test an agent before submitting i
    MISTRAL_API_KEY=your_mistral_key
    ```
 
-4. Run the evaluation or demo:
+6. Run the evaluation or demo:
    For evaluation:
    ```bash
    python scripts/run_evaluation.py
