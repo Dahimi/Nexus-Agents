@@ -21,19 +21,30 @@ class WebSearcherInput(AgentInput):
     )
 
 class WebSearcher(Agent):
-    """
-    An intelligent agent that performs web searches by:
-    1. Getting search results via Serper API
-    2. Reranking results with Jina
-    3. Synthesizing a response using LLM
-    """
+   
     
     def __init__(self, model="jina-reranker-v2-base-multilingual", top_n=10):
-        description = """
-        An agent specialized in web search operations.
-        Performs intelligent web searches by combining search API results,
-        reranking, and LLM synthesis to find relevant information.
-        """
+        description =  """
+    An intelligent agent specialized in efficient information retrieval from the web.
+    
+    Best used for:
+    - Quick information lookup and fact-checking
+    - Research queries requiring data from multiple sources
+    - Getting up-to-date information (news, prices, etc.)
+    - Synthesizing information from multiple search results
+    
+    Advantages:
+    - Much faster than browser-based search
+    - Lower resource usage and cost
+    - Efficient for pure information retrieval tasks
+    
+    Not suitable for:
+    - Tasks requiring user authentication
+    - Interactive web operations (form filling, clicking, etc.)
+    - Tasks that need to maintain web session state
+    - Complex web automation sequences
+    
+    """
         name = "WebSearcher"
         task = AgentTask.WEB_SEARCH
         super().__init__(name, description, task)

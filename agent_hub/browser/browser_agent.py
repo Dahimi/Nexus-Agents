@@ -1,8 +1,8 @@
 from browser_use import Agent as BrowserAgent
 from agent_hub.agent import Agent as BaseAgent, AgentTask, AgentInput
 from pydantic import Field
+from agent_hub.llms import mistral_llm
 
-from langchain_mistralai import ChatMistralAI
 from agent_hub.state import State
 from agent_hub.plan import TaskStatus
 import asyncio
@@ -15,9 +15,31 @@ class BrowserUseInput(AgentInput):
 
 class BrowserUse(BaseAgent):
     def __init__(self):
-        description = """An agent that allows AI agents to browse the web in fast and efficient way just like a human.
-        The agent is independent and able to perform browsing tasks.
-        It can handle complex queries that require multiple steps to complete. Don't give too granular queries. Give a high level query."""
+        description = """
+    An agent that emulates human-like web browsing behavior for complex web interactions.
+    
+    Best used for:
+    - Tasks requiring authentication (logging into platforms)
+    - Multi-step web processes (booking flights, shopping)
+    - Interactive web operations (form filling, button clicking)
+    - Tasks needing session state maintenance
+    
+    Advantages:
+    - Can handle complex web interactions
+    - Maintains session state and cookies
+    - Supports authenticated operations
+    - Can execute JavaScript and handle dynamic content
+    
+    Trade-offs:
+    - Slower than direct API or search operations
+    - Higher resource usage
+    - More complex error handling needed
+    - Not suitable for bulk operations
+    
+    Note: For simple information retrieval, prefer WebSearcher agent as it's
+    more efficient. Use BrowserUse only when actual browser interaction
+    is necessary for the task.
+    """
         name = "BrowserUse"
         task = AgentTask.WEB_BROWSER
         super().__init__(name, description, task)
@@ -33,7 +55,7 @@ class BrowserUse(BaseAgent):
         try:
             browser_agent = BrowserAgent(
                 task=browse_input.query,
-                llm=ChatMistralAI(model="pixtral-large-latest")
+                llm=mistral_llm
             )
             
             result = asyncio.run(browser_agent.run())

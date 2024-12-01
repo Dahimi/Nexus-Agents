@@ -220,9 +220,9 @@ Below is a demo of a use-case that was solved using Agent Hub.
 
 ---
 
-## **Running the Evaluation Locally**
+## **Running the Evaluation Pipeline or Demo Example Locally**
 
-You can also run the evaluation pipeline locally if you want to test an agent before submitting it. Here's how to set it up:
+You can run the evaluation pipeline locally to test an agent before submitting it, or try out the demo example. Here's how:
 
 1. Clone the repository:
    ```bash
@@ -235,13 +235,27 @@ You can also run the evaluation pipeline locally if you want to test an agent be
    pip install -r requirements.txt
    ```
 
-3. Run the evaluation for an agent:
+3. Set up environment variables:
+   Create a `.env` file with your API keys:
    ```bash
-   python scripts/run_evaluation.py --agent <path-to-agent-directory>
+   SERPER_API_KEY=your_serper_key
+   JINA_API_KEY=your_jina_key
+   GROQ_API_KEY=your_groq_key
+   MISTRAL_API_KEY=your_mistral_key
    ```
 
-4. View the results:
-   The results will be saved in `evaluation/results/`, and you can view the metrics like accuracy, time, memory usage, etc.
+4. Run the evaluation or demo:
+   For evaluation:
+   ```bash
+   python scripts/run_evaluation.py
+   ```
+   For the demo example:
+   ```bash
+   python -m scripts.demo_example
+   ```
+
+5. View results:
+   Evaluation results will be saved in `evaluation/results/` with metrics for accuracy, timing, memory usage, etc.
 
 ---
 ## **Contributing**

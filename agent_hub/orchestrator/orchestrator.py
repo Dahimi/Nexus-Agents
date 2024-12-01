@@ -23,7 +23,7 @@ class Orchestrator(Agent):
         self.available_agents = available_agents
         self.agents_names_input_names = {agent.as_tool.__name__: agent.name for agent in available_agents}
         self.main_llm = get_llm()
-        self.plan_llm = get_llm().with_structured_output(OrchestratorPlan)
+        self.plan_llm = get_llm("mistral", "pixtral-large-latest").with_structured_output(OrchestratorPlan)
         self.plan = None
         
     def define_input_schema(self)->type[OrchestratorInput]:
@@ -79,6 +79,7 @@ class Orchestrator(Agent):
         human_prompt = f"""Plan the computer interaction steps for this task: {query}
         Break it down into specific, atomic operations that match our agents' capabilities."""
         messages = [SystemMessage(content=system_prompt), HumanMessage(content=human_prompt)]
+        print("Invoking plan LLM... with messages: ", "\n".join([m.content for m in messages]))
         plan = self.plan_llm.invoke(messages)
         print("New Plan Created: \n", plan.model_dump_json(indent=4))
         return plan
