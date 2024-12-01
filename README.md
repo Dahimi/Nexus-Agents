@@ -22,6 +22,8 @@ This isn't just about catching up - it's about leading in our own way. We're cre
 
 > **Project Pitch**: For a comprehensive pitch and overview of Agent Hub's vision and goals, please see our Project Pitch: [Nexus Agents pitch.pdf](./Nexus%20Agents%20pitch.pdf).
 
+[Watch our pitch video](./Pitch%20video.mp4)
+
 ## **Table of Contents**
 - [Overview](#overview)
 - [Features](#features)
