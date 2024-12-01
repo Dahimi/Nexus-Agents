@@ -232,12 +232,12 @@ You can run the evaluation pipeline locally to test an agent before submitting i
 1. Clone the repository:
    ```bash
    git clone https://github.com/Dahimi/Nexus-Agents.git
-   cd agent-hub
+   cd Nexus-Agents
    ```
 
 2. Install dependencies:
    ```bash
-   pip install -r requirements.txt
+   pip install -r requirements/requirements.txt
    ```
 
 3. Set up environment variables (Though it's good software development practice, we uploaded a .env file with the keys to make it easier to run the evaluation pipeline locally (you can use your own keys because those are just free plans keys so they may expire)):
