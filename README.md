@@ -359,6 +359,11 @@ Enhance our automation and deployment infrastructure (It's currently in the very
 
 
 ---
+### Meet Our Team:
+
+    - [Yassmine ED-DYB](https://www.linkedin.com/in/yassmineeddyb/)
+    - [Soufiane DAHIMI](https://www.linkedin.com/in/soufiane-dahimi/)
+    
 ## **License**
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
