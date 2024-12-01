@@ -107,7 +107,7 @@ class Orchestrator(Agent):
             ))
         return "\n".join(capabilities)
 
-    def execute_plan(self, plan: OrchestratorPlan):
+    def execute_plan(self, plan: OrchestratorPlan, previous_outputs: List[str]):
         """
         Execute the plan by invoking the appropriate agents for each task.
         The orchestrator should manage dependencies, handle agent outputs, and ensure tasks are completed in the correct order.
@@ -146,6 +146,8 @@ class Orchestrator(Agent):
             Current task:
             {current_task.model_dump_json(indent=4)}
 
+            Look at the previous agents' outputs and use them to complete the current task and provide necessary context to the agent.
+            Previous outputs: {previous_outputs}
             For each task, you should:
             1. Analyze what type of computer interaction is needed
             2. Choose the most efficient agent and interaction method
@@ -192,6 +194,7 @@ class Orchestrator(Agent):
         orchestrator_input = OrchestratorInput(query=state["user_input"])
         # First, create a detailed plan for the query
         plan = state.get("plan", None)
+        previous_outputs = state.get("previous_outputs", [])
         print(f"Inside Orchestrator, current plan: {plan.model_dump_json(indent=4) if plan else 'None'}")
         last_task_status = state.get("last_task_status", TaskStatus.PENDING)
         if plan is None:
@@ -204,7 +207,7 @@ class Orchestrator(Agent):
             plan.is_completed = True
         # Execute the tasks based on the plan
         if not plan.is_completed:
-            next_agent_input, next_agent_name = self.execute_plan(plan)
+            next_agent_input, next_agent_name = self.execute_plan(plan, previous_outputs)
         else :
             next_agent_input = None
             next_agent_name = None

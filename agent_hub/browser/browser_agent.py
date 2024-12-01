@@ -61,13 +61,15 @@ class BrowserUse(BaseAgent):
             result = asyncio.run(browser_agent.run())
             return {
             "last_task_status": TaskStatus.SUCCESS,
-                "last_task_output": result
+                "last_task_output": result,
+                "previous_outputs": [str(result)[:200]]
             }
         except Exception as e:
             print(f"Error executing task: {browse_input.query}. Error: {e}")
             return {
                 "last_task_status": TaskStatus.FAILURE,
-                "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}"
+                "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}",
+                "previous_outputs": [f"Error executing task: {browse_input.query}. Error: {e}"]
             }
         
         
@@ -78,19 +80,21 @@ class BrowserUse(BaseAgent):
         try:
             browser_agent = BrowserAgent(
                 task=browse_input.query,
-                llm=ChatMistralAI(model="pixtral-large-latest")
+                llm=mistral_llm
             )
             
             result = await browser_agent.run()
             return {
                 "last_task_status": TaskStatus.SUCCESS,
-                "last_task_output": result
+                "last_task_output": result,
+                "previous_outputs": [str(result)[:200]]
             }
         except Exception as e:
             print(f"Error executing task: {browse_input.query}. Error: {e}")
             return {
                 "last_task_status": TaskStatus.FAILURE,
-                "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}"
+                "last_task_output": f"Error executing task: {browse_input.query}. Error: {e}",
+                "previous_outputs": [f"Error executing task: {browse_input.query}. Error: {e}"]
             }
         
     def define_input_schema(self) -> type[BrowserUseInput]:

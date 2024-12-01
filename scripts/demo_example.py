@@ -7,7 +7,7 @@ def invoke_graph(user_input: str):
     return graph.invoke({"messages": [HumanMessage(content=user_input)], "user_input": user_input})
 
 
-result = invoke_graph("Can you check the weather in Paris (use the web search agent)?")
+result = invoke_graph("Can you check the weather in Paris (use the web search agent) and then write the results to a file called weather.txt?")
 print(result)
 print("*"*100)
 print("Final Output:")

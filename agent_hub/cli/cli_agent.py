@@ -3,7 +3,11 @@ from pydantic import Field
 import time
 from agent_hub.plan import TaskStatus
 from agent_hub.state import State
-
+from agent_hub.cli.cli_generator import generate_cli_command
+import subprocess
+import logging
+import os
+from pathlib import Path
 
 class CLIAgentInput(AgentInput):
     """
@@ -14,11 +18,6 @@ class CLIAgentInput(AgentInput):
     )
 
 class CLIAgent(Agent):
-    """
-    An intelligent agent that can translate high-level operations into appropriate CLI commands
-    and execute them safely
-    """
-    
     def __init__(self):
         description = """
         An agent specialized in executing CLI operations and file management tasks. 
@@ -28,6 +27,10 @@ class CLIAgent(Agent):
         name = "CLIAgent"
         task = AgentTask.CLI_COMMAND
         super().__init__(name, description, task)
+        
+        # Set project root
+        self.project_root = Path(__file__).parent.parent.parent
+        os.chdir(self.project_root)
 
     def define_input_schema(self)->type[CLIAgentInput]:
         return CLIAgentInput
@@ -57,15 +60,29 @@ class CLIAgent(Agent):
         cli_input = CLIAgentInput(**state["next_agent_input"])
         print(f"CLIAgent has finished the task: {cli_input.operation}")
         return {"last_task_status": TaskStatus.SUCCESS,
-                "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}"}
+                "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}",
+                "previous_outputs": [f"CLIAgent has finished the task: {cli_input.operation}"]}
 
     def __call__(self, state: State):
         cli_input = CLIAgentInput(**state["next_agent_input"])
         print(f"Processing CLI operation: {cli_input.operation}")
-        time.sleep(2)  # Simulated processing time
-        print(f"CLIAgent completed operation: {cli_input.operation}")
+        command = generate_cli_command(cli_input.operation)
+        try:
+            output = run_command(command)
+            if not output:
+                return {"last_task_status": TaskStatus.FAILURE,
+                        "last_task_output": f"CLIAgent failed to execute the command: {command}",
+                        "previous_outputs": [f"CLIAgent failed to execute the command: {command}"]}
+        except Exception as e:
+            return {"last_task_status": TaskStatus.FAILURE,
+                    "last_task_output": f"CLIAgent failed to execute the command: {command}",
+                    "previous_outputs": [f"CLIAgent failed to execute the command: {command}"]}
+        
+        print(f"Executed command: {command}")
+        
         return {"last_task_status": TaskStatus.SUCCESS,
-                "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}"}
+                "last_task_output": f"CLIAgent has finished the task: {cli_input.operation}",
+                "previous_outputs": [f"CLIAgent has finished the task: {cli_input.operation}"]}
 
     async def setup(self):
         """
@@ -77,3 +94,26 @@ class CLIAgent(Agent):
         # - Verify necessary permissions
         # - Initialize command templates/patterns
 
+
+
+def run_command(command):
+    """Run a command and log output"""
+    try:
+        process = subprocess.run(
+            command,
+            check=True,
+            text=True,
+            capture_output=True,
+            shell=True
+        )
+        logging.info(process.stdout)
+        if process.stderr:
+            logging.error(process.stderr)
+        return True
+    except subprocess.CalledProcessError as e:
+        logging.error(f"Error running command: {e}")
+        if e.output:
+            logging.error(e.output)
+        if e.stderr:
+            logging.error(e.stderr)
+        return False
